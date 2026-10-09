@@ -6,15 +6,9 @@ import FeatureGrid from "@/components/FeatureGrid";
 import EditorialSection from "@/components/EditorialSection";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import {
-  IconDistinction,
-  IconElevate,
-  IconExperience,
-  IconKit,
-  IconOpportunity,
-  IconSupply,
-  IconTraining,
-} from "@/components/Icons";
+import ProfessionalAdvantage from "@/components/ProfessionalAdvantage";
+import ProfessionalCTA from "@/components/ProfessionalCTA";
+import { IconKit, IconSupply, IconTraining } from "@/components/Icons";
 
 export const metadata: Metadata = pageMetadata({
   title: "Shavista for Professionals",
@@ -24,26 +18,15 @@ export const metadata: Metadata = pageMetadata({
   path: "/professionals",
 });
 
-const advantages = [
+const businessCase = [
+  { title: "Differentiation", body: "A signature shave that sets your shop apart from the one down the street." },
+  { title: "Customer experience", body: "A service clients notice, enjoy and talk about." },
+  { title: "Repeat visits", body: "One more reason for clients to book the next appointment." },
+  { title: "Service upgrades", body: "A natural add-on to haircuts, beard trims and existing shave services." },
+  { title: "Predictable portioning", body: "One capsule per shave, designed to make product costs easier to plan." },
   {
-    title: "Something new",
-    body: "A signature shave with its own name, one your clients can ask for and look forward to.",
-    icon: <IconDistinction />,
-  },
-  {
-    title: "Easy to deliver",
-    body: "A simple, repeatable system: capsule, warm water, brush. Consistent every time.",
-    icon: <IconExperience />,
-  },
-  {
-    title: "A premium service",
-    body: "A new service opportunity designed to increase revenue potential, priced at your discretion.",
-    icon: <IconOpportunity />,
-  },
-  {
-    title: "Your craft, intact",
-    body: "Shavista adds to your menu. It doesn’t replace your services, tools or technique.",
-    icon: <IconElevate />,
+    title: "Potential premium pricing",
+    body: "A differentiated experience that may support a higher service price, set entirely by you.",
   },
 ];
 
@@ -122,32 +105,14 @@ export default function ProfessionalsPage() {
       </EditorialSection>
 
       {/* Then, the business */}
-      <section className="bg-cream py-24 md:py-32">
-        <div className="container-luxe">
-          <SectionHeading
-            eyebrow="Then, your business"
-            title={[
-              "The Shavista",
-              <>
-                <em className="accent text-terracotta">Advantage.</em>
-              </>,
-            ]}
-            intro={
-              <p>
-                Offer a premium experience without changing how you work. Shavista is designed to
-                complement your existing services, not replace a single one.
-              </p>
-            }
-          />
-          <FeatureGrid items={advantages} columns={4} className="mt-14 md:mt-20" />
-        </div>
-      </section>
+      <ProfessionalAdvantage tone="cream" />
+      <ProfessionalCTA formPage="" />
 
       {/* Become a Shavista shop */}
       <section className="bg-espresso py-24 text-cream md:py-36">
         <div className="container-luxe">
           <Reveal>
-            <Eyebrow tone="dark">Professional only</Eyebrow>
+            <Eyebrow tone="dark">Professional first</Eyebrow>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="display text-[clamp(3rem,9vw,8.5rem)]">
@@ -163,8 +128,9 @@ export default function ProfessionalsPage() {
             </Reveal>
             <Reveal delay={300} className="lede space-y-5 text-cream/75 md:col-span-6 md:col-start-7">
               <p>
-                Shavista is made only for licensed barbers and barbershop professionals. You won’t
-                find it on supermarket shelves, so the experience belongs to your chair.
+                Shavista is being developed for licensed barbers and barbershop professionals. Our
+                professional-first approach is designed to keep the experience centered on your
+                chair.
               </p>
               <p>
                 We’re shaping the partner program with barbers now. Request information to be among
@@ -207,8 +173,61 @@ export default function ProfessionalsPage() {
         </p>
       </EditorialSection>
 
-      {/* Planned */}
+      {/* Economics */}
       <section className="bg-cream py-24 md:py-32">
+        <div className="container-luxe grid gap-14 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="The business case"
+              title={[
+                "Make Every",
+                <>
+                  Service <em className="accent text-terracotta">Count.</em>
+                </>,
+              ]}
+              intro={
+                <p>
+                  Shavista is intended to help barbers introduce a differentiated service that may
+                  support premium pricing, without changing how they work.
+                </p>
+              }
+            />
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <ul className="border-t border-espresso/15">
+              {businessCase.map((item, i) => (
+                <Reveal
+                  as="li"
+                  key={item.title}
+                  delay={i * 70}
+                  className="grid gap-1 border-b border-espresso/15 py-5 sm:grid-cols-[13rem_1fr] sm:gap-6"
+                >
+                  <span className="display text-[1.3rem]">{item.title}</span>
+                  <span className="text-muted">{item.body}</span>
+                </Reveal>
+              ))}
+            </ul>
+
+            {/* Reserved for a future service-margin calculator — intentionally not built yet */}
+            <Reveal className="mt-10 rounded-media border-2 border-dashed border-espresso/20 px-6 py-8 md:px-8">
+              <p className="label text-sage-deep">Coming later</p>
+              <p className="display mt-3 text-[1.6rem]">Service planner</p>
+              <p className="mt-2 max-w-md text-muted">
+                We’re planning a simple tool to help you model a Shavista service with your own
+                prices and costs. It isn’t available yet.
+              </p>
+            </Reveal>
+
+            <p className="mt-6 text-sm leading-relaxed text-muted">
+              Pricing is always set by your shop. Results will vary by market, location and
+              clientele, and Shavista makes no guarantee of revenue or profit.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Planned */}
+      <section className="bg-sand py-24 md:py-32">
         <div className="container-luxe">
           <SectionHeading
             eyebrow="What’s planned"
@@ -230,7 +249,10 @@ export default function ProfessionalsPage() {
       </section>
 
       {/* Request form */}
-      <section id="request" className="scroll-mt-20 bg-charcoal py-24 text-cream md:py-32">
+      <section id="request" className="relative scroll-mt-20 bg-charcoal py-24 text-cream md:py-32">
+        {/* CTA anchors: each pre-selects its interest in the form */}
+        <span id="request-samples" className="absolute top-0 scroll-mt-20" aria-hidden />
+        <span id="request-starter-kit" className="absolute top-0 scroll-mt-20" aria-hidden />
         <div className="container-luxe grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading

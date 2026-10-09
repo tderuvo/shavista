@@ -30,11 +30,21 @@ export function Arrow() {
 
 /** Pill-shaped call to action. */
 export default function ButtonLink({ href, children, variant = "primary", className = "" }: ButtonLinkProps) {
+  const cls = `group inline-flex items-center justify-center rounded-full px-7 py-4 text-[0.95rem] font-medium transition-colors duration-500 ease-luxe ${styles[variant]} ${className}`;
+
+  // Same-page anchors use a native link so the browser fires `hashchange`
+  // (ContactForm listens for it to preselect an interest).
+  if (href.startsWith("#")) {
+    return (
+      <a href={href} className={cls}>
+        {children}
+        <Arrow />
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center rounded-full px-7 py-4 text-[0.95rem] font-medium transition-colors duration-500 ease-luxe ${styles[variant]} ${className}`}
-    >
+    <Link href={href} className={cls}>
       {children}
       <Arrow />
     </Link>

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # netlify
 .netlify
+
+# internal documents (claims register) — kept local, never committed
+/docs/

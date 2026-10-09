@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useId, useState, useSyncExternalStore, type FormEvent } from "react";
 import { Arrow } from "./Button";
 
 type ContactFormProps = {
@@ -9,11 +9,28 @@ type ContactFormProps = {
 };
 
 const interests = [
-  "Professional starter kits",
+  "Professional samples (when available)",
+  "Shavista starter kit (when available)",
   "Shavista training",
   "Recurring product supply",
   "Becoming a Shavista partner",
 ];
+
+/** CTAs link to these anchors; the matching interest is pre-ticked. */
+const HASH_TO_INTEREST: Record<string, string> = {
+  "#request-samples": interests[0],
+  "#request-starter-kit": interests[1],
+};
+
+function subscribeToHash(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  // Re-read once after mount: client-side navigation can update the URL after first render.
+  const t = window.setTimeout(onChange, 0);
+  return () => {
+    window.removeEventListener("hashchange", onChange);
+    window.clearTimeout(t);
+  };
+}
 
 /**
  * UI-only form. No backend is connected: submissions are validated
@@ -23,6 +40,10 @@ const interests = [
 export default function ContactForm({ variant = "contact", tone = "light" }: ContactFormProps) {
   const id = useId();
   const [submitted, setSubmitted] = useState(false);
+  const [toggled, setToggled] = useState<Record<string, boolean>>({});
+  const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => "");
+  const preselected = HASH_TO_INTEREST[hash];
+  const isChecked = (interest: string) => toggled[interest] ?? interest === preselected;
   const dark = tone === "dark";
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -98,12 +119,18 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
                     type="checkbox"
                     name="interests"
                     value={interest}
+                    checked={isChecked(interest)}
+                    onChange={(e) => setToggled((t) => ({ ...t, [interest]: e.target.checked }))}
                     className={box}
                   />
                   <span className={optionText}>{interest}</span>
                 </label>
               ))}
             </div>
+            <p className={`mt-4 text-sm leading-relaxed ${muted}`}>
+              Samples and starter kits are not available yet. Selecting them registers your interest
+              in future availability.
+            </p>
           </fieldset>
         )}
 

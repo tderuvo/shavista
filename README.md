@@ -60,6 +60,8 @@ The site also generates `robots.txt`, `sitemap.xml`, an Open Graph image (`/open
 
 ```text
 shavista/
+├── docs/
+│   └── CLAIMS-TO-VERIFY.md    # Internal claims register — local only, git-ignored
 ├── public/
 │   └── images/
 │       └── placeholders/      # SVG placeholder artwork (replace with photography)
@@ -87,6 +89,10 @@ shavista/
 │   │   ├── FeatureGrid.tsx    # Hairline-divided feature columns
 │   │   ├── CTASection.tsx
 │   │   ├── ContactForm.tsx    # UI only, no backend (see below)
+│   │   ├── ValueProposition.tsx      # "Built for the Chair" band under the home hero
+│   │   ├── DifferencePillars.tsx     # The Shavista Difference: formulation, preparation, precision
+│   │   ├── ProfessionalAdvantage.tsx # B2B advantage section (Home + For Professionals)
+│   │   ├── ProfessionalCTA.tsx       # Samples / starter-kit interest CTAs
 │   │   ├── MediaFrame.tsx     # next/image wrapper, auto-labels placeholders
 │   │   ├── Reveal.tsx         # Scroll-reveal animation
 │   │   ├── Button.tsx
@@ -136,6 +142,12 @@ The capsule artwork (`capsule-concept.svg`) is deliberately abstract. **The fina
 `ContactForm` is UI only. It validates in the browser, then discards the submission and shows a message that nothing was sent. The form also tells visitors up front that submissions are not active.
 
 To go live, connect `handleSubmit` in `src/components/ContactForm.tsx` to a Server Action, an API route or a form service. Then remove the "Form preview · Not yet active" notice and change the confirmation message.
+
+## Claims policy
+
+Shavista is in development. Product, formulation, hygiene and business claims are tracked in `docs/CLAIMS-TO-VERIFY.md`, an internal register. It is git-ignored, so it lives only on the local machine, and it is never served by the website. Share it privately with anyone who needs it. Don't change development-stage wording ("being developed", "designed to", "proposed", "target") to factual wording until that file marks the claim **Verified**.
+
+The sample and starter-kit CTAs link to `/professionals#request-samples` and `#request-starter-kit`. The inquiry form reads the hash and pre-ticks the matching interest. Like the rest of the form, it doesn't send anything yet.
 
 ## Content guardrails
 

@@ -4,28 +4,28 @@ import { contactNav, primaryNav, site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="grain relative overflow-hidden bg-charcoal text-ivory">
-      <div className="container-luxe relative pb-10 pt-24 md:pt-32">
-        <div className="grid gap-16 md:grid-cols-12">
+    <footer className="bg-charcoal text-cream">
+      <div className="container-luxe pb-10 pt-20 md:pt-28">
+        <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-6">
             <Wordmark size="md" />
-            <p className="display mt-8 max-w-sm text-3xl italic text-ivory/80">
-              {site.tagline}
+            <p className="display mt-8 max-w-md text-[2rem] md:text-[2.4rem]">
+              A fresh take <em className="accent text-terracotta-light">on the shave.</em>
             </p>
-            <p className="label mt-6 text-bronze">{site.secondary}</p>
+            <p className="mt-4 text-cream/70">{site.secondary}</p>
           </div>
 
           <nav aria-label="Footer" className="md:col-span-3">
-            <p className="label mb-6 text-ivory/50">Explore</p>
-            <ul className="space-y-4 text-sm text-ivory/80">
+            <p className="label mb-5 text-sage-light">Explore</p>
+            <ul className="space-y-3 text-cream/85">
               <li>
-                <Link href="/" className="link-draw hover:text-ivory">
+                <Link href="/" className="link-draw hover:text-cream">
                   Home
                 </Link>
               </li>
               {[...primaryNav, contactNav].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="link-draw hover:text-ivory">
+                  <Link href={item.href} className="link-draw hover:text-cream">
                     {item.label}
                   </Link>
                 </li>
@@ -34,26 +34,25 @@ export default function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="label mb-6 text-ivory/50">Professionals</p>
-            <p className="text-sm leading-relaxed text-ivory/70">
-              SHAVISTA is created exclusively for licensed barbers and barbershop
-              professionals.
+            <p className="label mb-5 text-sage-light">For barbers</p>
+            <p className="leading-relaxed text-cream/75">
+              Shavista is made for licensed barbers and barbershop professionals.
             </p>
             <Link
               href="/professionals#request"
-              className="label link-draw mt-6 inline-block text-bronze"
+              className="link-draw mt-5 inline-block font-medium text-terracotta-light"
             >
-              Request information
+              Professional inquiries →
             </Link>
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col gap-4 border-t border-ivory/10 pt-8 text-xs leading-relaxed text-ivory/50 md:flex-row md:items-end md:justify-between">
+        <div className="mt-20 flex flex-col gap-4 border-t border-cream/15 pt-8 text-sm leading-relaxed text-cream/65 md:flex-row md:items-end md:justify-between">
           <p className="max-w-xl">
-            SHAVISTA is currently in development. Products are not yet available for
-            purchase. Imagery shown is placeholder artwork pending final photography.
+            Shavista is currently in development and not yet available for purchase. Some imagery is
+            placeholder artwork or concept visualization pending final photography.
           </p>
-          <p>© 2026 SHAVISTA · shavista.com</p>
+          <p>© 2026 Shavista · shavista.com</p>
         </div>
       </div>
     </footer>

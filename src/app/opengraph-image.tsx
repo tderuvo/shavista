@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "SHAVISTA — The Art of a Better Shave.";
+export const alt = "Shavista — A Fresh Take on the Shave.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -14,20 +14,24 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "radial-gradient(circle at 70% 30%, #3a3129 0%, #202321 60%)",
-          color: "#F4F0E8",
-          fontFamily: "serif",
+          justifyContent: "space-between",
+          padding: 80,
+          background: "#F7F3EC",
+          color: "#49382E",
         }}
       >
-        <div style={{ width: 80, height: 1, background: "#A88658", marginBottom: 48 }} />
-        <div style={{ fontSize: 104, letterSpacing: 40, paddingLeft: 40 }}>SHAVISTA</div>
-        <div style={{ fontSize: 40, fontStyle: "italic", marginTop: 36, color: "#D9D3C8" }}>
-          The Art of a Better Shave.
+        <div style={{ fontSize: 26, letterSpacing: 8, fontWeight: 600 }}>SHAVISTA</div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 92, letterSpacing: -3, lineHeight: 1 }}>A Fresh Take</div>
+          <div style={{ fontSize: 92, letterSpacing: -3, lineHeight: 1.05, color: "#B7795C" }}>on the Shave.</div>
+          <div style={{ fontSize: 30, marginTop: 30, color: "#655950" }}>
+            Made for Barbers. Remembered by Clients.
+          </div>
         </div>
-        <div style={{ fontSize: 18, letterSpacing: 8, marginTop: 56, color: "#A88658", textTransform: "uppercase" }}>
-          Modern Luxury · Timeless Craftsmanship
+        <div style={{ display: "flex", gap: 14 }}>
+          <div style={{ width: 120, height: 10, borderRadius: 5, background: "#B7795C" }} />
+          <div style={{ width: 60, height: 10, borderRadius: 5, background: "#84917B" }} />
+          <div style={{ width: 30, height: 10, borderRadius: 5, background: "#E8DDCC" }} />
         </div>
       </div>
     ),

@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 import ButtonLink from "./Button";
 import Reveal from "./Reveal";
+import { Eyebrow } from "./SectionHeading";
 import { isDarkTone, toneClasses, type Tone } from "./EditorialSection";
 
 type CTASectionProps = {
   eyebrow?: string;
-  title: string[];
+  /** One entry per line; wrap words in <em className="accent"> for the serif accent. */
+  title: ReactNode[];
   body?: ReactNode;
   cta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
@@ -20,53 +22,44 @@ export default function CTASection({
   body,
   cta,
   secondaryCta,
-  tone = "charcoal",
+  tone = "espresso",
   size = "default",
 }: CTASectionProps) {
   const dark = isDarkTone(tone);
   const statement = size === "statement";
 
   return (
-    <section
-      className={`relative overflow-hidden ${dark ? "grain" : ""} ${toneClasses[tone]} ${
-        statement ? "py-32 md:py-48" : "py-24 md:py-36"
-      }`}
-    >
-      <div className="container-luxe relative text-center">
+    <section className={`relative overflow-hidden ${toneClasses[tone]} ${statement ? "py-28 md:py-40" : "py-24 md:py-32"}`}>
+      <div className="container-luxe text-center">
         {eyebrow && (
-          <Reveal className="mb-10 flex items-center justify-center gap-4">
-            <span className="rule" aria-hidden />
-            <p className={`label ${dark ? "text-bronze" : "text-bronze-deep"}`}>{eyebrow}</p>
-            <span className="rule" aria-hidden />
+          <Reveal>
+            <Eyebrow tone={dark ? "dark" : "light"} center>
+              {eyebrow}
+            </Eyebrow>
           </Reveal>
         )}
         <h2
-          className={`display mx-auto uppercase ${
-            statement ? "text-[clamp(3rem,9vw,9.5rem)]" : "max-w-5xl text-[clamp(2.4rem,5.5vw,5rem)]"
+          className={`display mx-auto ${
+            statement ? "max-w-6xl text-[clamp(2.8rem,7.4vw,7.25rem)]" : "max-w-4xl text-[clamp(2.3rem,5vw,4.5rem)]"
           }`}
         >
           {title.map((line, i) => (
-            <Reveal as="span" key={i} delay={i * 180} className={`block ${statement && i > 0 ? "italic text-bronze" : ""}`}>
+            <Reveal as="span" key={i} delay={i * 160} className="block">
               {line}
             </Reveal>
           ))}
         </h2>
         {body && (
-          <Reveal
-            delay={300}
-            className={`mx-auto mt-10 max-w-xl text-base leading-relaxed md:text-lg ${
-              dark ? "text-ivory/70" : "text-ink-muted"
-            }`}
-          >
+          <Reveal delay={280} className={`lede mx-auto mt-8 max-w-xl ${dark ? "text-cream/75" : "text-muted"}`}>
             {body}
           </Reveal>
         )}
-        <Reveal delay={420} className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonLink href={cta.href} variant={dark ? "light" : "dark"}>
+        <Reveal delay={400} className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <ButtonLink href={cta.href} variant={dark ? "light" : "primary"}>
             {cta.label}
           </ButtonLink>
           {secondaryCta && (
-            <ButtonLink href={secondaryCta.href} variant={dark ? "outline-light" : "outline-dark"}>
+            <ButtonLink href={secondaryCta.href} variant={dark ? "outline-light" : "secondary"}>
               {secondaryCta.label}
             </ButtonLink>
           )}

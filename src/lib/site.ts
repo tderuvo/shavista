@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const site = {
-  name: "SHAVISTA",
+  name: "Shavista",
   url: "https://shavista.com",
-  tagline: "The Art of a Better Shave.",
-  secondary: "Modern Luxury. Timeless Craftsmanship.",
+  tagline: "A Fresh Take on the Shave.",
+  secondary: "Made for Barbers. Remembered by Clients.",
   description:
-    "SHAVISTA is a professional-only shaving brand in development — single-use capsules of concentrated shaving soap, crafted for barbers who believe the experience matters as much as the result.",
+    "Shavista is a new professional shaving experience for barbershops — freshly prepared lather, personal touches and the skill of your barber. Currently in development.",
 } as const;
 
 export type NavItem = { label: string; href: string };

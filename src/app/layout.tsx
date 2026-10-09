@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { DM_Sans, Instrument_Serif } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   keywords: [
     "professional shaving",
     "barber shave",
+    "barbershop experience",
     "shaving capsule",
-    "luxury barbershop",
     "hot towel shave",
-    "barber supplies",
+    "premium barber service",
     "shaving lather",
   ],
   alternates: { canonical: "/" },
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#202321",
+  themeColor: "#f7f3ec",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${manrope.variable}`}
+      className={`${dmSans.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -73,10 +73,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
       </head>
-      <body className="flex min-h-dvh flex-col bg-ivory text-charcoal">
+      <body className="flex min-h-dvh flex-col bg-cream text-espresso">
         <a
           href="#main"
-          className="label sr-only z-[100] bg-charcoal px-5 py-3 text-ivory focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="label sr-only z-[100] rounded-full bg-charcoal px-5 py-3 text-cream focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Skip to content
         </a>

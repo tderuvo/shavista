@@ -10,27 +10,27 @@ export const metadata: Metadata = pageMetadata({
   title: "Shavista Academy — Coming Soon",
   absolute: true,
   description:
-    "Shavista Academy is a future professional training concept from SHAVISTA. Coming soon.",
+    "Shavista Academy is a future concept for professional training in the Shavista experience. Coming soon.",
   path: "/academy",
 });
 
 const offerings = [
   {
     tag: "Future concept",
-    title: "Ritual training",
-    body: "The SHAVISTA ritual, step by step — from capsule to finished shave — and how to present it to clients.",
+    title: "Experience training",
+    body: "Preparing and presenting the Shavista experience, from capsule to finish.",
     icon: <IconExperience />,
   },
   {
     tag: "Future concept",
     title: "Professional techniques",
-    body: "Lather building, brush work and presentation, explored with the professionals who practice them.",
+    body: "Lather, brush work and client care, explored with the barbers who practice them.",
     icon: <IconTraining />,
   },
   {
     tag: "Future concept",
     title: "Certified Shavista program",
-    body: "A possible future path to recognize barbers who master the SHAVISTA ritual. Not yet available or accredited.",
+    body: "A possible future way to recognize barbers who master the Shavista experience. Not yet available or accredited.",
     icon: <IconSeal />,
   },
 ];
@@ -40,42 +40,57 @@ export default function AcademyPage() {
     <>
       <Hero
         eyebrow="Shavista Academy · Coming soon"
-        title={["Mastery deserves", "recognition."]}
-        subtitle="A future home for professional SHAVISTA training."
+        title={[
+          "Mastery Deserves",
+          <>
+            <em className="accent text-terracotta">Recognition.</em>
+          </>,
+        ]}
+        subtitle="A future home for Shavista professional training."
         image={{
-          src: "/images/placeholders/ritual-razor.svg",
-          alt: "A folded straight razor resting on a stack of white towels.",
-          brief: "Academy imagery to come",
+          src: "/images/placeholders/lather-macro.svg",
+          alt: "Close-up of rich shaving lather.",
+          brief: "Barbers learning together, natural light",
         }}
       />
 
-      <section className="bg-ivory py-24 md:py-36">
+      <section className="bg-sand py-24 md:py-32">
         <div className="container-luxe">
           <SectionHeading
             eyebrow="The concept"
-            title={["Where the ritual", "is passed on."]}
+            title={[
+              "Learning,",
+              <>
+                <em className="accent text-terracotta-deep">Barber to Barber.</em>
+              </>,
+            ]}
             intro={
               <>
                 <p>
-                  Great shaving is learned in the chair, refined over years and handed down from one
-                  barber to the next. Shavista Academy is our future concept for honoring that
-                  tradition — and sharing the SHAVISTA ritual with the professionals who carry it.
+                  Great barbers never stop learning from each other. Shavista Academy is our future
+                  concept for sharing the Shavista experience with the professionals who bring it to
+                  life.
                 </p>
                 <p className="mt-5">
-                  The Academy is not yet open. The programs below are concepts under consideration,
-                  and no training or certification is currently offered.
+                  The Academy is not open yet. The programs below are ideas under consideration. No
+                  training or certification is currently offered.
                 </p>
               </>
             }
           />
-          <FeatureGrid items={offerings} columns={3} className="mt-16 md:mt-24" />
+          <FeatureGrid items={offerings} columns={3} className="mt-14 md:mt-20" />
         </div>
       </section>
 
       <CTASection
         eyebrow="Coming soon"
-        title={["Be the first", "to know."]}
-        body={<p>Register your professional interest and we’ll share news of the Academy as it develops.</p>}
+        title={[
+          "Be the First",
+          <>
+            <em className="accent text-terracotta-light">to Know.</em>
+          </>,
+        ]}
+        body={<p>Register your professional interest and we’ll share Academy news as it develops.</p>}
         cta={{ label: "Register interest", href: "/contact" }}
       />
     </>

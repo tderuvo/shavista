@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 type SectionHeadingProps = {
   eyebrow?: string;
   /** Use an array to break the headline into deliberate lines. */
-  title: string | string[];
+  title: ReactNode | ReactNode[];
   intro?: ReactNode;
   align?: "left" | "center";
   tone?: "light" | "dark";
@@ -14,10 +14,19 @@ type SectionHeadingProps = {
 };
 
 const titleSizes = {
-  md: "text-[clamp(2.2rem,4.2vw,3.6rem)]",
-  lg: "text-[clamp(2.6rem,5.6vw,5rem)]",
-  xl: "text-[clamp(3rem,8vw,7.5rem)]",
+  md: "text-[clamp(2.1rem,4vw,3.4rem)]",
+  lg: "text-[clamp(2.5rem,5.4vw,4.75rem)]",
+  xl: "text-[clamp(3rem,8vw,7rem)]",
 };
+
+export function Eyebrow({ children, tone = "light", center = false }: { children: ReactNode; tone?: "light" | "dark"; center?: boolean }) {
+  return (
+    <div className={`mb-6 flex items-center gap-3 ${center ? "justify-center" : ""}`}>
+      <span className="rule" aria-hidden />
+      <p className={`label ${tone === "dark" ? "text-terracotta-light" : "text-terracotta-deep"}`}>{children}</p>
+    </div>
+  );
+}
 
 export default function SectionHeading({
   eyebrow,
@@ -36,12 +45,11 @@ export default function SectionHeading({
   return (
     <Reveal className={`${centered ? "mx-auto text-center" : ""} ${className}`}>
       {eyebrow && (
-        <div className={`mb-8 flex items-center gap-4 ${centered ? "justify-center" : ""}`}>
-          <span className="rule" aria-hidden />
-          <p className={`label ${onDark ? "text-bronze" : "text-bronze-deep"}`}>{eyebrow}</p>
-        </div>
+        <Eyebrow tone={tone} center={centered}>
+          {eyebrow}
+        </Eyebrow>
       )}
-      <Tag className={`display uppercase ${titleSizes[size]} ${onDark ? "text-ivory" : "text-charcoal"}`}>
+      <Tag className={`display ${titleSizes[size]} ${onDark ? "text-cream" : "text-espresso"}`}>
         {lines.map((line, i) => (
           <span key={i} className="block">
             {line}
@@ -49,11 +57,7 @@ export default function SectionHeading({
         ))}
       </Tag>
       {intro && (
-        <div
-          className={`mt-8 max-w-xl text-base leading-relaxed md:text-lg ${centered ? "mx-auto" : ""} ${
-            onDark ? "text-ivory/70" : "text-ink-muted"
-          }`}
-        >
+        <div className={`lede mt-7 max-w-xl ${centered ? "mx-auto" : ""} ${onDark ? "text-cream/75" : "text-muted"}`}>
           {intro}
         </div>
       )}

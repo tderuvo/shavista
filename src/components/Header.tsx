@@ -35,30 +35,31 @@ export default function Header() {
     };
   }, [open]);
 
-  const solid = scrolled && !open;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color,padding] duration-700 ease-[var(--ease-luxe)] ${
-        solid
-          ? "border-b border-charcoal/10 bg-ivory/90 py-4 text-charcoal backdrop-blur-md"
-          : "border-b border-transparent py-6 text-ivory md:py-8"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color,padding] duration-700 ease-luxe ${
+        open
+          ? "border-b border-transparent py-5 text-cream"
+          : scrolled
+            ? "border-b border-espresso/10 bg-cream/90 py-4 text-charcoal backdrop-blur-md"
+            : "border-b border-transparent py-5 text-charcoal md:py-7"
       }`}
     >
       <div className="container-luxe flex items-center justify-between gap-8">
-        <Link href="/" aria-label="SHAVISTA — Home" className="relative z-10">
+        <Link href="/" aria-label="Shavista — Home" className="relative z-10">
           <Wordmark />
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-10">
+          <ul className="flex items-center gap-9 text-[0.95rem] font-medium">
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className="label link-draw"
+                  className="link-draw"
                 >
                   {item.label}
                 </Link>
@@ -68,11 +69,7 @@ export default function Header() {
               <Link
                 href={contactNav.href}
                 aria-current={isActive(contactNav.href) ? "page" : undefined}
-                className={`label border px-5 py-3 transition-colors duration-500 ${
-                  solid
-                    ? "border-charcoal/30 hover:border-charcoal hover:bg-charcoal hover:text-ivory"
-                    : "border-ivory/40 hover:border-ivory hover:bg-ivory hover:text-charcoal"
-                }`}
+                className="rounded-full bg-charcoal px-5 py-2.5 text-cream transition-colors duration-500 hover:bg-terracotta-deep"
               >
                 {contactNav.label}
               </Link>
@@ -90,13 +87,13 @@ export default function Header() {
         >
           <span className="relative block h-3 w-7">
             <span
-              className={`absolute left-0 top-0 h-px w-full bg-current transition-transform duration-500 ${
-                open ? "translate-y-1.5 rotate-45" : ""
+              className={`absolute left-0 top-0 h-0.5 w-full rounded-full bg-current transition-transform duration-500 ${
+                open ? "translate-y-1.25 rotate-45" : ""
               }`}
             />
             <span
-              className={`absolute bottom-0 left-0 h-px w-full bg-current transition-transform duration-500 ${
-                open ? "-translate-y-1.5 -rotate-45" : ""
+              className={`absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-current transition-transform duration-500 ${
+                open ? "-translate-y-1.25 -rotate-45" : ""
               }`}
             />
           </span>
@@ -106,34 +103,31 @@ export default function Header() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 bg-charcoal text-ivory transition-opacity duration-700 lg:hidden ${
+        className={`fixed inset-0 -z-10 bg-espresso text-cream transition-opacity duration-500 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <nav
-          aria-label="Mobile"
-          className="container-luxe flex h-full flex-col justify-between pb-12 pt-32"
-        >
-          <ul className="space-y-6">
-            {[...primaryNav, contactNav].map((item, i) => (
+        <nav aria-label="Mobile" className="container-luxe flex h-full flex-col justify-between pb-12 pt-32">
+          <ul className="space-y-5">
+            {[{ label: "Home", href: "/" }, ...primaryNav, contactNav].map((item, i) => (
               <li
                 key={item.href}
-                className={`transition-all duration-700 ease-[var(--ease-luxe)] ${
+                className={`transition-all duration-700 ease-luxe ${
                   open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                 }`}
-                style={{ transitionDelay: open ? `${150 + i * 70}ms` : "0ms" }}
+                style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
               >
                 <Link
                   href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className="display block text-[2.6rem] text-ivory/90 transition-colors hover:text-bronze aria-[current=page]:text-bronze"
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className="display block text-[2.4rem] text-cream transition-colors hover:text-terracotta-light aria-[current=page]:text-terracotta-light"
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="label text-ivory/50">For professional barbers · In development</p>
+          <p className="text-sm text-cream/70">A Fresh Take on the Shave. · Coming to barbershops.</p>
         </nav>
       </div>
     </header>

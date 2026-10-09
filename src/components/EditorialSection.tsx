@@ -1,25 +1,28 @@
 import type { ReactNode } from "react";
 import MediaFrame from "./MediaFrame";
 import Reveal from "./Reveal";
+import { Eyebrow } from "./SectionHeading";
 
-export type Tone = "ivory" | "stone" | "charcoal" | "forest";
+export type Tone = "cream" | "sand" | "sage" | "espresso" | "charcoal";
 
 export const toneClasses: Record<Tone, string> = {
-  ivory: "bg-ivory text-charcoal",
-  stone: "bg-ivory-deep text-charcoal",
-  charcoal: "bg-charcoal text-ivory",
-  forest: "bg-forest text-ivory",
+  cream: "bg-cream text-espresso",
+  sand: "bg-sand text-espresso",
+  sage: "bg-sage-wash text-espresso",
+  espresso: "bg-espresso text-cream",
+  charcoal: "bg-charcoal text-cream",
 };
 
-export const isDarkTone = (tone: Tone) => tone === "charcoal" || tone === "forest";
+export const isDarkTone = (tone: Tone) => tone === "espresso" || tone === "charcoal";
 
 type EditorialSectionProps = {
   eyebrow?: string;
   /** Large chapter number, e.g. "01" */
   index?: string;
-  title: string[];
+  /** One entry per line; wrap words in <em className="accent"> for the serif accent. */
+  title: ReactNode[];
   children: ReactNode;
-  image: { src: string; alt: string; brief?: string };
+  image: { src: string; alt: string; brief?: string; note?: string; position?: string };
   reverse?: boolean;
   tone?: Tone;
   /** Tall portrait or wider landscape image */
@@ -36,7 +39,7 @@ export default function EditorialSection({
   children,
   image,
   reverse = false,
-  tone = "ivory",
+  tone = "cream",
   imageShape = "portrait",
   id,
   footer,
@@ -59,14 +62,16 @@ export default function EditorialSection({
       : "md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8";
 
   return (
-    <section id={id} className={`relative overflow-hidden py-24 md:py-36 ${toneClasses[tone]}`}>
-      <div className="container-luxe grid items-center gap-y-14 md:grid-cols-12 md:gap-x-8 lg:gap-x-10">
+    <section id={id} className={`relative overflow-hidden py-24 md:py-32 ${toneClasses[tone]}`}>
+      <div className="container-luxe grid items-center gap-y-12 md:grid-cols-12 md:gap-x-8 lg:gap-x-10">
         <Reveal className={`md:row-start-1 ${imageCols}`}>
           <MediaFrame
             src={image.src}
             alt={image.alt}
             brief={image.brief}
-            className={portrait ? "aspect-[4/5]" : "aspect-[5/4]"}
+            note={image.note}
+            imageClassName={image.position}
+            className={portrait ? "aspect-4/5" : "aspect-5/4"}
           />
         </Reveal>
 
@@ -75,34 +80,25 @@ export default function EditorialSection({
             {index && (
               <p
                 aria-hidden
-                className={`display mb-6 text-[clamp(4rem,8vw,7rem)] italic leading-none ${
-                  tone === "forest" ? "text-bronze-light" : dark ? "text-bronze" : "text-bronze-deep"
+                className={`accent mb-4 text-[clamp(3.5rem,7vw,5.5rem)] leading-none ${
+                  dark ? "text-terracotta-light" : tone === "cream" ? "text-terracotta" : "text-terracotta-deep"
                 }`}
               >
                 {index}
               </p>
             )}
-            {eyebrow && (
-              <div className="mb-8 flex items-center gap-4">
-                <span className="rule" aria-hidden />
-                <p className={`label ${tone === "forest" ? "text-bronze-light" : dark ? "text-bronze" : "text-bronze-deep"}`}>{eyebrow}</p>
-              </div>
-            )}
-            <h2 className="display text-[clamp(2.3rem,4.6vw,4.2rem)] uppercase">
+            {eyebrow && <Eyebrow tone={dark ? "dark" : "light"}>{eyebrow}</Eyebrow>}
+            <h2 className="display text-[clamp(2.3rem,4.4vw,4rem)]">
               {title.map((line, i) => (
                 <span key={i} className="block">
                   {line}
                 </span>
               ))}
             </h2>
-            <div
-              className={`mt-10 max-w-lg space-y-5 text-base leading-relaxed md:text-[1.0625rem] ${
-                dark ? "text-ivory/75" : "text-ink-muted"
-              }`}
-            >
+            <div className={`lede mt-8 max-w-lg space-y-5 ${dark ? "text-cream/75" : "text-muted"}`}>
               {children}
             </div>
-            {footer && <div className="mt-12">{footer}</div>}
+            {footer && <div className="mt-10">{footer}</div>}
           </Reveal>
         </div>
       </div>

@@ -1,8 +1,8 @@
-# SHAVISTA — The Art of a Better Shave
+# Shavista — A Fresh Take on the Shave
 
-Brand website for **SHAVISTA** (shavista.com), a professional-only shaving brand in development.
+Brand website for **Shavista** (shavista.com), a B2B company in development that is introducing a new kind of premium shaving experience to modern barbershops.
 
-SHAVISTA makes single-use capsules of concentrated powdered shaving soap. A barber mixes one with warm water and whips it into a lather with a traditional brush, and can add a compatible, skin-safe fragrance. The brand sells to barbers and barbershop owners, not to consumers.
+Shavista helps barbers deliver a better shave and a more memorable customer experience. The product is a single-use shaving capsule: the barber adds warm water and builds a fresh lather with a brush, and can personalize it with a compatible, skin-safe fragrance. The barber is the professional, the capsule makes the experience possible, and the client remembers it. Shavista sells to barbers and barbershop owners, not to consumers.
 
 The site introduces the brand and the vision behind it, and collects interest from professionals. It deliberately has **no e-commerce**: no prices, no cart, and nothing that says the product can be bought yet.
 
@@ -11,7 +11,7 @@ The site introduces the brand and the vision behind it, and collects interest fr
 - [Next.js 16](https://nextjs.org) (App Router, Turbopack, Cache Components). Every route is prerendered as static.
 - TypeScript
 - Tailwind CSS v4, with design tokens in `src/app/globals.css`
-- `next/font` for Cormorant Garamond (display) and Manrope (body), self-hosted at build time
+- `next/font` for DM Sans (headings and body) and Instrument Serif (accents), self-hosted at build time
 - No animation library. Scroll reveals use a small `IntersectionObserver` component and CSS transitions, and they respect `prefers-reduced-motion`.
 
 ## Getting started
@@ -99,17 +99,25 @@ shavista/
 
 ## Design system
 
+The look is warm, light and contemporary, closer to modern hospitality than to traditional grooming. Tokens live in `src/app/globals.css`.
+
 | Token | Value | Use |
 | --- | --- | --- |
-| `charcoal` | `#202321` | Primary dark |
-| `ivory` | `#F4F0E8` | Primary light |
-| `bronze` | `#A88658` | Accent, used sparingly. Text use on dark backgrounds only. |
-| `bronze-deep` | `#7A5F3C` | Bronze text on light backgrounds (meets WCAG AA) |
-| `bronze-light` | `#CDB083` | Small bronze text on forest green (meets WCAG AA) |
-| `forest` | `#34453D` | Secondary dark section tone |
-| `stone` | `#D9D3C8` | Soft neutral |
+| `cream` | `#F7F3EC` | Main page background |
+| `sand` | `#E8DDCC` | Alternating sections |
+| `espresso` | `#49382E` | Primary text and headings; dark sections |
+| `charcoal` | `#33312D` | Navigation, footer and contrast sections |
+| `muted` | `#655950` | Secondary body text (AA on cream, sand and sage-wash) |
+| `terracotta` | `#B7795C` | Warm accent. Large display text on cream only |
+| `terracotta-deep` | `#8E5339` | Terracotta for small text on light backgrounds |
+| `terracotta-light` | `#D39A7E` | Terracotta on dark backgrounds |
+| `sage` | `#84917B` | Subtle secondary accent (decorative) |
+| `sage-deep` / `sage-light` | `#586551` / `#B4BFAA` | Sage for text or icons on light / dark backgrounds |
+| `sage-wash` | `#E3E6DC` | Soft sage section background |
 
-Typography: **Cormorant Garamond** for headings, **Manrope** for body and labels.
+Typography: **DM Sans** for headings and body, with **Instrument Serif** italic for accent words. Wrap a word in `<em className="accent">` to use the serif accent. Headlines are sentence or title case; uppercase is reserved for small eyebrow labels.
+
+Section tones (`cream`, `sand`, `sage`, `espresso`, `charcoal`) are shared by `EditorialSection` and `CTASection`. Alternate them to keep the page from feeling uniformly beige.
 
 ## Replacing placeholder imagery
 
@@ -118,7 +126,7 @@ Every image on the site goes through `MediaFrame`. While a file lives in `/image
 To swap in real photography:
 
 1. Add the photo, for example `public/images/hero-lather.jpg`. Photos at least 2400px wide work best for full-bleed sections.
-2. Change the `src` where it is used, for example `/images/placeholders/hero-lather.svg` becomes `/images/hero-lather.jpg`.
+2. Change the `src` where it is used, for example `/images/placeholders/lather-bowl-light.svg` becomes `/images/lather-bowl.jpg`.
 3. The placeholder caption disappears automatically, and `next/image` optimizes the photo.
 
 The capsule artwork (`capsule-concept.svg`) is deliberately abstract. **The final capsule design has not been decided**, so replace it only with approved product photography.

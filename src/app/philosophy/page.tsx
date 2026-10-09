@@ -8,30 +8,30 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = pageMetadata({
   title: "Our Philosophy",
   description:
-    "The traditional barber shave deserves a modern renaissance. The principles behind SHAVISTA.",
+    "Everyday experiences deserve to feel special. The beliefs behind Shavista, a new kind of professional shave for modern barbershops.",
   path: "/philosophy",
 });
 
 const principles = [
   {
-    title: "Respect for craftsmanship",
-    body: "A straight-razor shave is one of the oldest skills in the trade, and one of the hardest to master. We build for the people who have mastered it — never around them.",
+    title: "Hospitality first",
+    body: "The best experiences make people feel welcome. Shavista is designed to be warm and inviting, never stiff or exclusive.",
   },
   {
-    title: "The importance of ritual",
-    body: "Ritual is what separates a service from an experience. The warm towel, the brush, the measured pace: these details are the point, not the decoration.",
+    title: "The barber is the professional",
+    body: "Skill, judgment and personal attention can’t be packaged. Our job is to support the people behind the chair, not to replace a single thing they do.",
   },
   {
-    title: "The value of personal service",
-    body: "In a world of self-checkout and subscription razors, being cared for by a skilled professional has become rare. That rarity is worth protecting.",
+    title: "Fresh, every time",
+    body: "A lather prepared in front of you, from a capsule opened just for you. Freshness is something clients can see and feel.",
   },
   {
-    title: "Innovation that supports tradition",
-    body: "Modern formulation should serve the barber’s hand, not replace it. SHAVISTA brings consistency and freshness to a ritual that remains entirely human.",
+    title: "Personal, not precious",
+    body: "Choosing a fragrance or how you like your shave should feel easy. Premium doesn’t have to mean complicated.",
   },
   {
-    title: "Better experiences for modern men",
-    body: "Today’s client values time, quality and authenticity. A great shave offers all three — twenty quiet minutes that feel genuinely his.",
+    title: "Good for business",
+    body: "A great experience gives clients a reason to return. We want Shavista to be as good for barbershops as it is for the people in the chair.",
   },
 ];
 
@@ -40,57 +40,61 @@ export default function PhilosophyPage() {
     <>
       <Hero
         eyebrow="Our philosophy"
-        title={["A modern", "renaissance."]}
-        subtitle="The traditional barber shave deserves one."
+        title={[
+          "Everyday,",
+          <>
+            <em className="accent text-terracotta">Made Special.</em>
+          </>,
+        ]}
+        subtitle="We believe an ordinary service can become something worth looking forward to."
         image={{
-          src: "/images/placeholders/brush-portrait.svg",
-          alt: "A traditional shaving brush standing upright in dramatic light.",
-          brief: "The brush, a study in craft",
+          src: "/images/placeholders/lather-bowl-light.svg",
+          alt: "Fresh lather and a shaving brush in a sage-green bowl, lit by morning sun.",
+          brief: "Lather being prepared, warm natural light",
         }}
       />
 
-      <section className="bg-ivory py-28 md:py-44">
+      <section className="bg-sand py-24 md:py-36">
         <div className="container-luxe">
           <Reveal>
-            <p className="display mx-auto max-w-5xl text-center text-[clamp(2rem,4.4vw,4rem)] leading-[1.12]">
-              Somewhere along the way, the shave became an afterthought — quick, disposable,
-              done at the sink. <span className="italic text-bronze-deep">We believe it deserves better.</span>
+            <p className="display mx-auto max-w-5xl text-center text-[clamp(1.9rem,4vw,3.6rem)] leading-[1.15]">
+              The best everyday experiences aren’t the most expensive ones. They’re the ones made
+              with care, by people who are good at what they do.{" "}
+              <em className="accent text-terracotta-deep">That’s the shave we want to bring to every barbershop.</em>
             </p>
           </Reveal>
-          <Reveal delay={150} className="mx-auto mt-14 max-w-xl text-center text-base leading-relaxed text-ink-muted md:text-lg">
+          <Reveal delay={150} className="lede mx-auto mt-12 max-w-2xl text-center text-muted">
             <p>
-              SHAVISTA exists to return the shave to where it belongs: in the hands of a skilled
-              professional, as a ritual worth making time for. Everything we create begins with that
-              conviction.
+              Shavista starts with a simple idea: take something people already enjoy, prepare it
+              fresh, make it personal and put it in skilled hands. Familiar enough to understand
+              right away. Different enough to remember.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-ivory-deep py-24 md:py-36" aria-labelledby="principles">
+      <section className="bg-cream py-24 md:py-32" aria-labelledby="principles">
         <div className="container-luxe">
-          <Reveal className="mb-16 flex items-center gap-4 md:mb-24">
+          <Reveal className="mb-14 flex items-center gap-3 md:mb-20">
             <span className="rule" aria-hidden />
-            <h2 id="principles" className="label text-bronze-deep">
+            <h2 id="principles" className="label text-terracotta-deep">
               What we believe
             </h2>
           </Reveal>
-          <ol className="border-t border-charcoal/15">
+          <ol className="border-t border-espresso/15">
             {principles.map((p, i) => (
               <Reveal
                 as="li"
                 key={p.title}
-                className="group grid gap-6 border-b border-charcoal/15 py-12 md:grid-cols-12 md:py-16"
+                className="group grid gap-5 border-b border-espresso/15 py-10 md:grid-cols-12 md:py-14"
               >
-                <span className="display text-5xl italic leading-none text-bronze-deep md:col-span-2 md:text-6xl">
+                <span className="accent text-5xl leading-none text-terracotta md:col-span-2 md:text-6xl">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display text-[clamp(2rem,3.6vw,3.2rem)] uppercase leading-[1.02] transition-colors duration-500 group-hover:text-bronze-deep md:col-span-5">
+                <h3 className="display text-[clamp(1.9rem,3.2vw,2.9rem)] transition-colors duration-500 group-hover:text-terracotta-deep md:col-span-5">
                   {p.title}
                 </h3>
-                <p className="max-w-md leading-relaxed text-ink-muted md:col-span-4 md:col-start-9 md:pt-2 md:text-lg">
-                  {p.body}
-                </p>
+                <p className="lede max-w-md text-muted md:col-span-4 md:col-start-9 md:pt-1">{p.body}</p>
               </Reveal>
             ))}
           </ol>
@@ -98,32 +102,39 @@ export default function PhilosophyPage() {
       </section>
 
       <EditorialSection
-        tone="charcoal"
-        eyebrow="Understated by design"
-        title={["Quiet", "confidence."]}
-        image={{
-          src: "/images/placeholders/hot-towels.svg",
-          alt: "Rolled white towels with steam rising in warm light.",
-          brief: "Warm towels, the quiet before the shave",
-        }}
+        tone="sage"
+        eyebrow="Taking our time"
+        title={[
+          "Built With",
+          <>
+            <em className="accent text-terracotta-deep">Barbers in Mind.</em>
+          </>,
+        ]}
         imageShape="landscape"
+        image={{
+          src: "/images/placeholders/shop-light.svg",
+          alt: "A bright modern barbershop with plants and arched windows.",
+          brief: "Barbers and clients in a lively modern shop",
+        }}
       >
         <p>
-          We don’t believe luxury needs to shout. It shows in the weight of a good brush, the warmth
-          of a towel, the care in a barber’s hands.
+          Shavista is still in development, and we’re building it in conversation with the
+          professionals it’s made for.
         </p>
-        <p>
-          SHAVISTA is still being developed — carefully, and in conversation with the professionals
-          it is made for. We would rather get it right than get it out quickly.
-        </p>
+        <p>We’d rather get it right than get it out quickly.</p>
       </EditorialSection>
 
       <CTASection
-        tone="ivory"
+        tone="espresso"
         eyebrow="Join the conversation"
-        title={["Craft first.", "Always."]}
+        title={[
+          "Something Better Is",
+          <>
+            <em className="accent text-terracotta-light">On the Way.</em>
+          </>,
+        ]}
         cta={{ label: "For professionals", href: "/professionals" }}
-        secondaryCta={{ label: "Contact", href: "/contact" }}
+        secondaryCta={{ label: "Contact us", href: "/contact" }}
       />
     </>
   );

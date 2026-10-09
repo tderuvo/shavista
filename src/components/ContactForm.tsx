@@ -33,20 +33,28 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
 
   const field = `w-full border-0 border-b bg-transparent px-0 pb-3 pt-2 text-base outline-none transition-colors duration-500 ${
     dark
-      ? "border-ivory/25 text-ivory focus:border-bronze"
-      : "border-charcoal/25 text-charcoal focus:border-bronze-deep"
+      ? "border-cream/30 text-cream focus:border-terracotta-light"
+      : "border-espresso/25 text-espresso focus:border-terracotta-deep"
   }`;
-  const labelCls = `label block mb-1 text-[0.62rem] ${dark ? "text-ivory/60" : "text-ink-muted"}`;
-  const muted = dark ? "text-ivory/60" : "text-ink-muted";
+  const labelCls = `block mb-1 text-sm font-medium ${dark ? "text-cream/75" : "text-muted"}`;
+  const muted = dark ? "text-cream/75" : "text-muted";
+  const box = `h-[1.1rem] w-[1.1rem] shrink-0 cursor-pointer appearance-none rounded-[4px] border transition-colors ${
+    dark
+      ? "border-cream/50 checked:border-terracotta-light checked:bg-terracotta-light"
+      : "border-espresso/40 checked:border-terracotta-deep checked:bg-terracotta-deep"
+  }`;
+  const optionText = dark ? "text-cream/90" : "text-espresso";
 
   return (
     <div>
       <div
         role="note"
-        className={`mb-12 flex gap-4 border-l-2 border-bronze py-1 pl-5 text-sm leading-relaxed ${muted}`}
+        className={`mb-12 flex gap-4 rounded-r-lg border-l-2 border-terracotta py-3 pl-5 pr-4 text-sm leading-relaxed ${
+          dark ? "bg-cream/5" : "bg-sand/60"
+        } ${muted}`}
       >
         <p>
-          <span className={`label mb-1 block text-[0.62rem] ${dark ? "text-bronze" : "text-bronze-deep"}`}>
+          <span className={`label mb-1 block ${dark ? "text-terracotta-light" : "text-terracotta-deep"}`}>
             Form preview · Not yet active
           </span>
           Submissions are not active until a backend is configured. Information entered here will
@@ -90,11 +98,9 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
                     type="checkbox"
                     name="interests"
                     value={interest}
-                    className={`h-4 w-4 shrink-0 cursor-pointer appearance-none border transition-colors checked:border-bronze checked:bg-bronze ${
-                      dark ? "border-ivory/40" : "border-charcoal/40"
-                    }`}
+                    className={box}
                   />
-                  <span className={dark ? "text-ivory/85" : "text-charcoal/85"}>{interest}</span>
+                  <span className={optionText}>{interest}</span>
                 </label>
               ))}
             </div>
@@ -113,11 +119,9 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
             type="checkbox"
             name="licensed"
             required
-            className={`mt-1 h-4 w-4 shrink-0 cursor-pointer appearance-none border transition-colors checked:border-bronze checked:bg-bronze ${
-              dark ? "border-ivory/40" : "border-charcoal/40"
-            }`}
+            className={`mt-0.5 ${box}`}
           />
-          <span className={dark ? "text-ivory/85" : "text-charcoal/85"}>
+          <span className={optionText}>
             I am a licensed barber or barbershop professional.
           </span>
         </label>
@@ -125,10 +129,8 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
         <div className="flex flex-col gap-6 sm:col-span-2 sm:flex-row sm:items-center">
           <button
             type="submit"
-            className={`label group inline-flex items-center justify-center border px-8 py-5 transition-colors duration-500 ${
-              dark
-                ? "border-ivory bg-ivory text-charcoal hover:bg-transparent hover:text-ivory"
-                : "border-charcoal bg-charcoal text-ivory hover:bg-transparent hover:text-charcoal"
+            className={`group inline-flex items-center justify-center rounded-full px-7 py-4 text-[0.95rem] font-medium transition-colors duration-500 ${
+              dark ? "bg-cream text-espresso hover:bg-sand" : "bg-espresso text-cream hover:bg-terracotta-deep"
             }`}
           >
             {variant === "professional" ? "Request professional information" : "Send message"}
@@ -136,7 +138,7 @@ export default function ContactForm({ variant = "contact", tone = "light" }: Con
           </button>
           <p aria-live="polite" className={`text-sm leading-relaxed ${muted}`}>
             {submitted &&
-              "Thank you. This form is a preview — nothing was sent. Submissions will open once our professional enquiry system is live."}
+              "Thank you! This form is a preview, so nothing was sent. Submissions will open once our professional inquiry system is live."}
           </p>
         </div>
       </form>

@@ -6,63 +6,50 @@ import CTASection from "@/components/CTASection";
 import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import ButtonLink from "@/components/Button";
-import {
-  IconCreate,
-  IconDistinction,
-  IconElevate,
-  IconExperience,
-  IconOpen,
-  IconOpportunity,
-} from "@/components/Icons";
+import { IconDistinction, IconExperience, IconOpportunity } from "@/components/Icons";
 
-const stages = [
+const experience = [
   {
-    number: "01",
-    title: "Open",
-    body: "A precisely measured shaving preparation.",
-    icon: <IconOpen />,
+    title: "Freshly prepared",
+    body: "Rich shaving lather prepared by your barber.",
+    image: {
+      src: "/images/placeholders/lather-macro.svg",
+      alt: "Close-up of rich, creamy shaving lather.",
+      brief: "Barber’s hands whipping fresh lather",
+    },
   },
   {
-    number: "02",
-    title: "Create",
-    body: "Combine with warm water and work into a rich, luxurious lather.",
-    icon: <IconCreate />,
+    title: "Personalized",
+    body: "An experience tailored to individual preferences.",
+    image: {
+      src: "/images/placeholders/fragrance-light.svg",
+      alt: "Glass fragrance bottles on a sunlit shelf beside a plant.",
+      brief: "Client choosing a fragrance",
+    },
   },
   {
-    number: "03",
-    title: "Elevate",
-    body: "Deliver a personalized professional shaving experience.",
-    icon: <IconElevate />,
+    title: "Expertly delivered",
+    body: "Professional skill makes the difference.",
+    image: {
+      src: "/images/placeholders/chair-light.svg",
+      alt: "A modern barber chair in natural light with a towel over the backrest.",
+      brief: "Barber at work, client relaxed in the chair",
+    },
   },
 ];
 
 const qualities = [
-  { title: "Rich, luxurious lather", body: "Dense, creamy and generous — built by hand, with the brush." },
-  { title: "Comfortable razor glide", body: "A cushion that lets the blade move with confidence." },
-  { title: "A smooth shave", body: "Designed to support a clean, unhurried pass." },
-  { title: "A soft skin feel", body: "Intended to leave skin feeling comfortable after the towel." },
-  {
-    title: "Considerate formulation",
-    body: "Developed to help minimize the tight, dry sensation some clients notice after a shave.",
-  },
+  { title: "Comfortable razor glide", body: "A cushion of lather that helps the blade move smoothly." },
+  { title: "Rich lather", body: "Creamy and generous, built fresh with a brush." },
+  { title: "A smooth shave", body: "Made for an unhurried, confident pass." },
+  { title: "Skin comfort", body: "Developed with how the skin feels during the shave in mind." },
+  { title: "A soft finish", body: "Intended to leave skin feeling comfortable afterward." },
 ];
 
-const advantages = [
-  {
-    title: "Distinction",
-    body: "Stand apart with a memorable shaving ritual.",
-    icon: <IconDistinction />,
-  },
-  {
-    title: "Experience",
-    body: "Give clients something worth returning for.",
-    icon: <IconExperience />,
-  },
-  {
-    title: "Opportunity",
-    body: "Introduce a premium service designed to increase revenue potential per appointment.",
-    icon: <IconOpportunity />,
-  },
+const opportunity = [
+  { title: "Stand out", body: "Offer something different.", icon: <IconDistinction /> },
+  { title: "Delight clients", body: "Create a memorable experience.", icon: <IconExperience /> },
+  { title: "Grow", body: "Introduce a new premium service opportunity.", icon: <IconOpportunity /> },
 ];
 
 export default function Home() {
@@ -70,196 +57,238 @@ export default function Home() {
     <>
       {/* 1 — Hero */}
       <Hero
-        layout="editorial"
-        title={["The Art of a", "Better Shave."]}
-        subtitle="Modern Luxury. Timeless Craftsmanship."
+        layout="split"
+        eyebrow="Coming to barbershops"
+        title={[
+          "A Fresh Take",
+          <>
+            on the <em className="accent text-terracotta">Shave.</em>
+          </>,
+        ]}
+        subtitle="Made for Barbers. Remembered by Clients."
         body={
-          <p>
-            Elevating the professional shave through innovation, ritual, and the art of barbering.
-          </p>
+          <>
+            <p>
+              Meet Shavista. A new professional shaving experience combining freshly prepared
+              lather, personalization, and the skill of your barber.
+            </p>
+            <p className="font-medium text-espresso">A better shave is just the beginning.</p>
+          </>
         }
-        primaryCta={{ label: "Discover Shavista", href: "/experience" }}
-        secondaryCta={{ label: "For Professionals", href: "/professionals" }}
+        primaryCta={{ label: "Discover the experience", href: "/experience" }}
+        secondaryCta={{ label: "For barbers", href: "/professionals" }}
         image={{
           src: "/images/shavista-hero.png",
-          alt: "The SHAVISTA professional collection on a barber’s wooden counter: a black presentation box with brush and bowl, pre-shave oil bottles, a jar of SHAVISTA capsules, and a straight razor on slate.",
-          position: "object-[75%_50%] md:object-[50%_40%]",
+          alt: "Concept visualization of the Shavista professional collection on a barbershop counter.",
+          note: "Concept visualization · Packaging in development",
+          position: "object-[75%_50%]",
         }}
       />
 
-      {/* 2 — The Forgotten Art */}
+      {/* 2 — Introducing Shavista */}
       <EditorialSection
-        eyebrow="The forgotten art"
-        title={["Some traditions", "are worth", "perfecting."]}
+        tone="sand"
+        eyebrow="Introducing Shavista"
+        title={[
+          "Not Just a Shave.",
+          <>
+            A <em className="accent text-terracotta-deep">Shavista.</em>
+          </>,
+        ]}
         image={{
-          src: "/images/placeholders/ritual-razor.svg",
-          alt: "A closed straight razor resting on a stack of folded white towels.",
-          brief: "Straight razor and hot towels, side light",
+          src: "/images/placeholders/lather-bowl-light.svg",
+          alt: "A shaving brush resting in fresh lather in a sage-green bowl, lit by morning sun.",
+          brief: "Barber preparing warm lather, natural light",
         }}
       >
-        <p>There was a time when a shave was more than a routine.</p>
-        <p className="display space-y-1 border-l border-bronze/50 py-1 pl-6 text-2xl italic leading-snug text-charcoal md:text-[1.75rem]">
-          <span className="block">The preparation.</span>
-          <span className="block">The warm lather.</span>
-          <span className="block">The brush.</span>
-          <span className="block">The precision of a skilled barber.</span>
+        <p>Some experiences are worth slowing down for.</p>
+        <p className="space-y-1 border-l-2 border-terracotta/60 pl-5 text-espresso">
+          <span className="block">A freshly prepared lather.</span>
+          <span className="block">A fragrance chosen for you.</span>
+          <span className="block">The attention of a skilled barber.</span>
         </p>
-        <p>It was a ritual.</p>
-        <p>SHAVISTA brings that experience into the modern barbershop.</p>
-        <p className="text-charcoal">
-          Not by replacing tradition.
-          <br />
-          By giving it new possibilities.
+        <p>
+          Shavista brings these details together to make an everyday service feel like something
+          special.
         </p>
       </EditorialSection>
 
-      {/* 3 — Introducing the Capsule */}
-      <section className="relative overflow-hidden bg-ivory-deep py-24 md:py-36">
+      {/* 3 — The Experience */}
+      <section className="bg-cream py-24 md:py-32">
         <div className="container-luxe">
-          <div className="grid items-end gap-12 md:grid-cols-12">
-            <SectionHeading
-              className="md:col-span-7"
-              eyebrow="Introducing the capsule"
-              title={["A small capsule.", "A remarkable", "experience."]}
-            />
-            <Reveal delay={150} className="md:col-span-5 md:pb-3">
-              <p className="max-w-md text-base leading-relaxed text-ink-muted md:text-lg">
-                Each single-use capsule holds a concentrated, powdered shaving soap — measured for one
-                exceptional shave. Warm water and a traditional brush do the rest, in the barber’s
-                hands.
-              </p>
-            </Reveal>
-          </div>
-
-          <Reveal className="mt-16 md:mt-24">
-            <MediaFrame
-              src="/images/placeholders/capsule-concept.svg"
-              alt="Abstract concept artwork: a softly glowing form above a stone plinth, representing the capsule while its final design is in development."
-              brief="Capsule design in development"
-              className="aspect-[4/5] sm:aspect-[16/9] lg:aspect-[21/9]"
-              sizes="100vw"
-            />
-          </Reveal>
-
-          <FeatureGrid items={stages} columns={3} className="mt-4" />
+          <SectionHeading
+            align="center"
+            eyebrow="The experience"
+            title={
+              <>
+                It’s All in the <em className="accent text-terracotta">Experience.</em>
+              </>
+            }
+          />
+          <FeatureGrid items={experience} columns={3} className="mt-14 md:mt-20" />
         </div>
       </section>
 
-      {/* 4 — The Better Shave */}
-      <section className="grain relative overflow-hidden bg-charcoal py-24 text-ivory md:py-36">
-        <div className="container-luxe relative grid gap-16 lg:grid-cols-12 lg:gap-10">
+      {/* 4 — The Innovation */}
+      <EditorialSection
+        tone="sage"
+        reverse
+        eyebrow="The innovation"
+        title={[
+          "Something Small.",
+          <>
+            Something <em className="accent text-terracotta-deep">Different.</em>
+          </>,
+        ]}
+        image={{
+          src: "/images/placeholders/capsule-concept.svg",
+          alt: "Abstract artwork of a soft, glowing form above a stone plinth, standing in for the Shavista capsule while its design is developed.",
+          brief: "Capsule design in development",
+        }}
+      >
+        <p>
+          At the heart of every Shavista is a single-use capsule: one fresh portion of shaving soap,
+          ready for one client.
+        </p>
+        <p>
+          Your barber opens it, adds warm water and works it with a brush into a rich, creamy
+          lather, prepared fresh in front of you.
+        </p>
+        <p className="text-espresso">Simple for the barber. Memorable for the client.</p>
+      </EditorialSection>
+
+      {/* 5 — The Better Shave */}
+      <section className="bg-espresso py-24 text-cream md:py-32">
+        <div className="container-luxe grid gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <SectionHeading
               tone="dark"
               eyebrow="The better shave"
-              title={["Crafted for", "the blade.", "Considerate", "of the skin."]}
+              title={[
+                "Feels Better.",
+                <>
+                  <em className="accent text-terracotta-light">By Design.</em>
+                </>,
+              ]}
               intro={
                 <p>
-                  SHAVISTA is being developed to transform a few grams of powder into something
-                  generous and calm — a lather that serves the razor and respects the face beneath
-                  it.
+                  Shavista is being developed around one simple question: how should a great shave
+                  feel?
                 </p>
               }
             />
-            <Reveal delay={200} className="mt-14 hidden lg:block">
+            <Reveal delay={200} className="mt-12 hidden lg:block">
               <MediaFrame
-                src="/images/placeholders/lather-macro.svg"
-                alt="Close-up texture of dense, creamy shaving lather."
-                brief="Macro of lather texture"
-                className="aspect-[4/3]"
+                src="/images/placeholders/towel-light.svg"
+                alt="Rolled warm towels on a wooden tray with soft steam."
+                brief="Warm towel, relaxed client"
+                className="aspect-4/3"
               />
             </Reveal>
           </div>
 
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal>
-              <p className="label mb-2 text-ivory/50">In development to deliver</p>
+              <p className="label mb-3 text-sage-light">Developed with an emphasis on</p>
             </Reveal>
-            <ol className="border-t border-ivory/15">
+            <ol className="border-t border-cream/20">
               {qualities.map((q, i) => (
                 <Reveal
                   as="li"
                   key={q.title}
-                  delay={i * 90}
-                  className="group grid grid-cols-[3rem_1fr] gap-4 border-b border-ivory/15 py-8 md:grid-cols-[4.5rem_1fr]"
+                  delay={i * 80}
+                  className="group grid grid-cols-[3rem_1fr] gap-4 border-b border-cream/20 py-7 md:grid-cols-[4rem_1fr]"
                 >
-                  <span className="display pt-1 text-2xl italic text-bronze">
+                  <span className="accent text-3xl leading-none text-terracotta-light">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="display text-[1.85rem] leading-tight transition-colors duration-500 group-hover:text-bronze md:text-[2.2rem]">
+                    <h3 className="display text-[1.6rem] transition-colors duration-500 group-hover:text-terracotta-light md:text-[1.9rem]">
                       {q.title}
                     </h3>
-                    <p className="mt-2 leading-relaxed text-ivory/65">{q.body}</p>
+                    <p className="mt-1 text-cream/75">{q.body}</p>
                   </div>
                 </Reveal>
               ))}
             </ol>
             <Reveal>
-              <p className="mt-8 max-w-md text-xs leading-relaxed text-ivory/45">
-                SHAVISTA is in development. Descriptions reflect the intended experience of the
-                formulation and are not clinical or comparative claims.
+              <p className="mt-8 max-w-md text-sm leading-relaxed text-cream/65">
+                Shavista is in development. These describe the experience we are designing for. They
+                are not clinical or comparative claims.
               </p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* 5 — The Barber's Advantage */}
-      <section className="relative overflow-hidden bg-ivory py-24 md:py-36">
+      {/* 6 — The Barber's Opportunity */}
+      <section className="bg-cream py-24 md:py-32">
         <div className="container-luxe">
-          <SectionHeading
-            eyebrow="The barber’s advantage"
-            title={["Elevate your craft.", "Elevate your business."]}
-            intro={
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <SectionHeading
+              className="lg:col-span-7"
+              eyebrow="The barber’s opportunity"
+              title={[
+                "Better Shaves.",
+                <>
+                  Better <em className="accent text-terracotta">Business.</em>
+                </>,
+              ]}
+            />
+            <Reveal delay={150} className="lede space-y-4 text-muted lg:col-span-5">
+              <p>Give your clients something new to enjoy and another reason to come back.</p>
               <p>
-                SHAVISTA gives professional barbers the opportunity to introduce a distinctive,
-                premium shaving service — one that clients remember and ask for by name.
+                Shavista helps professional barbers introduce a distinctive premium shaving
+                experience that complements their existing services.
               </p>
-            }
-          />
-          <FeatureGrid items={advantages} columns={3} className="mt-16 md:mt-24" />
-          <Reveal className="mt-16">
-            <ButtonLink href="/professionals" variant="dark">
-              Explore the professional experience
-            </ButtonLink>
+            </Reveal>
+          </div>
+          <FeatureGrid items={opportunity} columns={3} className="mt-14 md:mt-20" />
+          <Reveal className="mt-12">
+            <ButtonLink href="/professionals">Explore Shavista for professionals</ButtonLink>
           </Reveal>
         </div>
       </section>
 
-      {/* 6 — Professional Exclusivity */}
+      {/* 7 — The Professional Community */}
       <EditorialSection
-        tone="forest"
-        reverse
-        eyebrow="Professional exclusivity"
-        title={["Created for", "professionals."]}
-        image={{
-          src: "/images/placeholders/shop-interior.svg",
-          alt: "A barber chair in a quiet barbershop, window light falling across the floor.",
-          brief: "The chair, before the first client",
-        }}
+        tone="sand"
+        eyebrow="The professional community"
+        title={[
+          "Made for the People",
+          <>
+            Behind the <em className="accent text-terracotta-deep">Chair.</em>
+          </>,
+        ]}
         imageShape="landscape"
-        footer={
-          <ButtonLink href="/professionals#request" variant="light">
-            Become a Shavista partner
-          </ButtonLink>
-        }
+        image={{
+          src: "/images/placeholders/shop-light.svg",
+          alt: "A bright, welcoming modern barbershop with arched windows, plants and two barber chairs.",
+          brief: "A busy, welcoming modern barbershop",
+        }}
       >
-        <p className="display text-3xl italic leading-snug text-ivory">
-          Great tools belong in skilled hands.
+        <p>
+          Barbers are skilled professionals and independent business owners. They know their
+          clients by name and turn a quick visit into the best part of someone’s week.
         </p>
         <p>
-          SHAVISTA is designed for professional barbers who understand that craftsmanship,
-          attention, and experience make the difference.
+          Shavista is built to support that craft, not replace it. The skill stays yours. We simply
+          add something new for your clients to look forward to.
         </p>
-        <p>Our professional-only approach celebrates the people behind the chair.</p>
       </EditorialSection>
 
-      {/* 7 — Closing statement */}
+      {/* Final CTA */}
       <CTASection
+        tone="charcoal"
         size="statement"
-        title={["The shave is an art.", "Let’s treat it that way."]}
-        cta={{ label: "Discover Shavista", href: "/experience" }}
+        title={[
+          "Something Better Is Coming",
+          <>
+            to the <em className="accent text-terracotta-light">Barbershop.</em>
+          </>,
+        ]}
+        cta={{ label: "Get to know Shavista", href: "/experience" }}
+        secondaryCta={{ label: "Professional inquiries", href: "/professionals#request" }}
       />
     </>
   );
